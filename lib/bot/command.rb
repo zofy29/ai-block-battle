@@ -1,12 +1,12 @@
 class Command
   ACTIONS = %w(left right down turnleft turnright).freeze
 
-  def left
-    puts :left
+  def left(step = 1)
+    puts (['left'] * step).join(',')
   end
 
-  def right
-    puts :right
+  def right(step = 1)
+    puts (['right'] * step).join(',')
   end
 
   def down

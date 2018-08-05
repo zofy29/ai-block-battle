@@ -7,6 +7,6 @@ class Player
   end
 
   def field=(raw_field)
-    @field = raw_field.reverse.split(";").map { |a| a.split(",") }
+    @field = raw_field.split(";").map { |a| a.split(",") }
   end
 end
