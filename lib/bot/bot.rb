@@ -7,14 +7,28 @@ class Bot
     @settings = Settings.new
   end
 
-  def run
-    while (line = gets) # reads lines from stdin
-      line.chomp == '' || parse(line.chomp) # parses each non-empty line
+  def run(input = '')
+    read_engine_messages(input) do |line|
+      parse(line.chomp) unless line.chomp.empty?
     end
-    run # re-launches listener
   end
 
   private
+
+  def read_engine_messages(input, &block)
+    return unless block_given?
+
+    if input.empty?
+      # reads lines from stdin
+      while (line = gets)
+        yield(line)
+      end
+    else
+      input.each_line do |line|
+        yield(line)
+      end
+    end
+  end
 
   def parse(line)
     formatted_line = @formatter.format_input(line)
@@ -55,7 +69,6 @@ class Bot
     when @settings.your_players
       @state.map = formatted_line if formatted_line.shift == 'field'
     end
-
   end
 
   def update_game(formatted_line)
