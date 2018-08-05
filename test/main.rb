@@ -7,10 +7,11 @@ require_relative '../lib/bot/game'
 require_relative '../lib/bot/state'
 require_relative '../lib/bot/settings'
 require_relative '../lib/bot/bot'
+require_relative '../lib/bot/player'
 require 'pry'
 
 def test_data
-  File.read('input.txt')
+  File.read("#{File.dirname(__FILE__)}/input.txt")
 end
 
 def main
