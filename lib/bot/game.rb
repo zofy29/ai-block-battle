@@ -24,4 +24,19 @@ class Game
       @action.random
     end
   end
+
+  def move_to(x, y)
+    commands = []
+    current_pos_x, current_pos_y = @state.current_type_start.split(",")
+
+    move_x_commands = if x > current_pos_x
+                        "left"
+                      else
+                        "right"
+                      end
+
+    (x - current_pos_x).abs.times { commands << move_x_commands }
+
+    commands
+  end
 end
